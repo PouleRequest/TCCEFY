@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [TCCEFYT]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Database [TCCEFYT]    Script Date: 24.11.2014 12:03:44 ******/
 CREATE DATABASE [TCCEFYT]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -77,13 +77,13 @@ EXEC sys.sp_db_vardecimal_storage_format N'TCCEFYT', N'ON'
 GO
 USE [TCCEFYT]
 GO
-/****** Object:  Table [dbo].[booking]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Table [dbo].[booking]    Script Date: 24.11.2014 12:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[booking](
-	[id_booking] [nchar](10) NOT NULL,
+	[id_booking] [int] IDENTITY(1,1) NOT NULL,
 	[date_time] [datetime] NOT NULL,
 	[fk_court] [int] NOT NULL,
 	[fk_person_booker] [int] NOT NULL,
@@ -95,13 +95,13 @@ CREATE TABLE [dbo].[booking](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[court]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Table [dbo].[court]    Script Date: 24.11.2014 12:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[court](
-	[id_court] [int] NOT NULL,
+	[id_court] [int] IDENTITY(1,1) NOT NULL,
 	[number] [int] NOT NULL,
  CONSTRAINT [PK_court] PRIMARY KEY CLUSTERED 
 (
@@ -110,7 +110,7 @@ CREATE TABLE [dbo].[court](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[group]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Table [dbo].[group]    Script Date: 24.11.2014 12:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[group](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[group_has_person]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Table [dbo].[group_has_person]    Script Date: 24.11.2014 12:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,7 +141,7 @@ CREATE TABLE [dbo].[group_has_person](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[person]    Script Date: 24.11.2014 11:01:15 ******/
+/****** Object:  Table [dbo].[person]    Script Date: 24.11.2014 12:03:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -154,7 +154,6 @@ CREATE TABLE [dbo].[person](
 	[password] [nchar](128) NULL,
 	[email] [nvarchar](150) NOT NULL,
 	[date_of_birth] [datetime2](7) NULL,
-	[fk_group] [int] NOT NULL,
  CONSTRAINT [PK_person] PRIMARY KEY CLUSTERED 
 (
 	[id_person] ASC
@@ -187,10 +186,8 @@ REFERENCES [dbo].[person] ([id_person])
 GO
 ALTER TABLE [dbo].[group_has_person] CHECK CONSTRAINT [FK_group_has_person_person]
 GO
-USE [master]
-GO
-ALTER DATABASE [TCCEFYT] SET  READ_WRITE 
-GO
+
+USE [TCCEFYT]
 
 
 ---------------------------------------
