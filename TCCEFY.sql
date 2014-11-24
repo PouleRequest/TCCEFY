@@ -88,6 +88,7 @@ CREATE TABLE [dbo].[booking](
 	[fk_court] [int] NOT NULL,
 	[fk_person_booker] [int] NOT NULL,
 	[fk_person_invited] [int] NOT NULL,
+	[guest] [nvarchar](50) NULL,
  CONSTRAINT [PK_booking] PRIMARY KEY CLUSTERED 
 (
 	[id_booking] ASC
