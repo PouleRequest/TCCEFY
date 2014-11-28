@@ -11,7 +11,12 @@ namespace TCCEFY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            tblCourts.Rows[1].Cells[1].Text = "Test";
+            tblCourts.Rows[3].Cells[1].Text = "Test";
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            tblCourts.Rows[Convert.ToInt32(ddlTime.SelectedValue)].Cells[Convert.ToInt32(ddlDays.SelectedValue)].Text = txtName.Text;
         }
     }
 }
