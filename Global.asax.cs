@@ -30,5 +30,7 @@ namespace TCCEFY
             // Code that runs when an unhandled error occurs
 
         }
+
+        public const string appVersion = "0.1";
     }
 }

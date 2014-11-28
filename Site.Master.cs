@@ -69,5 +69,22 @@ namespace TCCEFY
         {
 
         }
+
+        protected string getVersion()
+        {
+            return TCCEFY.Global.appVersion;
+        }
+
+        protected string getGreeting()
+        {
+            if (DateTime.Now.Hour < 18) 
+            {
+                return "Bonjour";
+            }
+            else
+            {
+                return "Bonsoir";
+            }
+        }
     }
 }
