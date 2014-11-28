@@ -136,6 +136,26 @@
             <asp:TableCell></asp:TableCell>
             <asp:TableCell></asp:TableCell>
         </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>20:00</asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell>21:00</asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+            <asp:TableCell></asp:TableCell>
+        </asp:TableRow>
 
     </asp:Table>
     
@@ -162,6 +182,8 @@
         <asp:ListItem Value="10">17:00</asp:ListItem>
         <asp:ListItem Value="11">18:00</asp:ListItem>
         <asp:ListItem Value="12">19:00</asp:ListItem>
+        <asp:ListItem Value="13">20:00</asp:ListItem>
+        <asp:ListItem Value="14">21:00</asp:ListItem>
     </asp:DropDownList>
     
     <asp:Label ID="lblTextName" runat="server" Text="Nom : "></asp:Label>

@@ -11,7 +11,14 @@ namespace TCCEFY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            tblCourts.Rows[3].Cells[1].Text = "Test";
+            loadTxtFile();
+        }
+
+        protected void loadTxtFile()
+        {
+            string[] arrDays = new string[] {"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"};
+
+
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
