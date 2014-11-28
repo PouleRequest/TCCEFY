@@ -190,4 +190,7 @@
     <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
     <asp:Button ID="btnSend" runat="server" OnClick="btnSend_Click" Text="Envoyer" />
     
+    <br />
+    <asp:Label ID="lblError" runat="server" BackColor="#FF9999" BorderStyle="Solid" Font-Size="XX-Large" ForeColor="Red" Visible="False"></asp:Label>
+    
 </asp:Content>

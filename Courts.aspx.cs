@@ -18,12 +18,23 @@ namespace TCCEFY
         {
             string[] arrDays = new string[] {"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"};
 
+            
 
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            tblCourts.Rows[Convert.ToInt32(ddlTime.SelectedValue)].Cells[Convert.ToInt32(ddlDays.SelectedValue)].Text = txtName.Text;
+            if (tblCourts.Rows[Convert.ToInt32(ddlTime.SelectedValue)].Cells[Convert.ToInt32(ddlDays.SelectedValue)].Text == "")
+            {
+                tblCourts.Rows[Convert.ToInt32(ddlTime.SelectedValue)].Cells[Convert.ToInt32(ddlDays.SelectedValue)].Text = txtName.Text;
+                lblError.Text = "";
+                lblError.Visible = false;
+            }
+            else
+            {
+                lblError.Visible = true;
+                lblError.Text ="Y a déjà quelqu'un.";
+            }
         }
     }
 }
