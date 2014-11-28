@@ -11,7 +11,7 @@ namespace TCCEFY
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            tblCourts.Rows[1].Cells[1].Text = "Test";
         }
     }
 }
