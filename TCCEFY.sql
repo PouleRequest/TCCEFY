@@ -859,9 +859,10 @@ BEGIN
 		ROLLBACK;
 	END
 	-- Check court availability
-	DECLARE @reservation_time DATETIME
+	DECLARE @reservation_time DATETIME, @court_id INT
 	SET @reservation_time = (SELECT date_time FROM inserted)
-	IF (EXISTS(SELECT date_time FROM booking WHERE date_time = @reservation_time)) BEGIN
+	SET @court_id = (SELECT fk_court FROM inserted)
+	IF ((SELECT COUNT(*) FROM booking WHERE (date_time = @reservation_time AND fk_court = @court_id)) > 1) BEGIN
 		PRINT 'There already is a reservation at this date and time'
 		ROLLBACK;
 	END
