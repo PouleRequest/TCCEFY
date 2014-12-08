@@ -821,3 +821,49 @@ insert into booking (date_time, fk_court, fk_person_booker, fk_person_invited) v
 insert into booking (date_time, fk_court, fk_person_booker, fk_person_invited) values ('2014-05-19 00:59:36', 2, 87, 98);
 insert into booking (date_time, fk_court, fk_person_booker, fk_person_invited) values ('2014-07-22 21:24:30', 2, 109, 171);
 insert into booking (date_time, fk_court, fk_person_booker, fk_person_invited) values ('2014-08-16 19:43:00', 2, 59, 25);
+
+
+-- #################################################
+--              TRIGGERS
+-- #################################################
+USE [TCCEFY]
+GO
+/****** Object:  Trigger [dbo].[chekBooking]    Script Date: 08.12.2014 11:03:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Batch submitted through debugger: SQLQuery22.sql|0|0|C:\Users\Etienne.FORNEY\Documents\SQL Server Management Studio\SQLQuery22.sql
+ALTER TRIGGER [dbo].[chekBooking] ON [dbo].[booking]
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @booker INT
+	DECLARE @invited INT
+	DECLARE @guest NVARCHAR
+	SET @booker = (SELECT fk_person_booker FROM inserted)
+	SET @invited = (SELECT fk_person_invited FROM inserted)
+	SET @guest = (SELECT guest FROM inserted)
+	-- Check for 3 people on the same court
+	IF (@booker != 0 AND @invited != 0 AND LEN(@guest) != 0) BEGIN
+		PRINT 'Can not have 3 people on a court.'
+		ROLLBACK;
+	END
+	-- Check if the people exist
+	DECLARE @person1 INT
+	SET @person1 = (SELECT id_person FROM person WHERE id_person = @booker)
+	DECLARE @person2 INT
+	SET @person1 = (SELECT id_person FROM person WHERE id_person = @invited)
+	IF (@person1 = NULL OR @person2 = NULL) BEGIN
+		PRINT 'A person does not exist.'
+		ROLLBACK;
+	END
+	-- Check court availability
+	DECLARE @reservation_time DATETIME
+	SET @reservation_time = (SELECT date_time FROM inserted)
+	IF (EXISTS(SELECT date_time FROM booking WHERE date_time = @reservation_time)) BEGIN
+		PRINT 'There already is a reservation at this date and time'
+		ROLLBACK;
+	END
+
+END
